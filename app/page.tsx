@@ -1,19 +1,16 @@
-import React, { use } from 'react';
-import { useEffect, useState } from 'react';
-import firebase from '../firebaseConfig'
-import {useAuthState} from "react-firebase-hooks/auth";
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
-import ChatRoom from "./components/chatroom";
-import SignIn from "./components/Signin";
-import { socket } from "./socket";
+import ChatRoom from "./chat/[roomId]/Room";
+import SignIn from "./auth/signin";
+import { socket } from "../socket";
+import { useRouter } from 'next/router';
 
-
-const auth = getAuth();
-const [user] = useAuthState(auth);
-
-const Dashboard = () => {
-
-  const user = useAuthState(auth);
+export default function HomePage() {
+  
+  const auth = getAuth();
+  const [user] = useAuthState(auth);
+  const router = useRouter();
 
   const [isConnected, setIsConnected] = useState(false);
   const [transport, setTransport] = useState("polling");
@@ -44,7 +41,7 @@ const Dashboard = () => {
   }, []);
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>HomePage</h1>
       <p>Status: {isConnected ? "connected" : "disconnected"}</p>
       <p>Transport: {transport}</p>
       <section>
@@ -53,5 +50,5 @@ const Dashboard = () => {
     </div>
   );
 }
-export default Dashboard;
+
 

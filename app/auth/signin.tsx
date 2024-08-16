@@ -1,14 +1,12 @@
 import React from 'react';
-import firebase from '@/firebaseConfig';
 import { auth } from '@/firebaseConfig';
-
-
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const SignIn = () => {
 
     const signinwithGoogle = () => {
-        const provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider);
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider);
     }
 
 
@@ -17,4 +15,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default SignIn;
