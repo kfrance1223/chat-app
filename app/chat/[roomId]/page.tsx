@@ -3,20 +3,21 @@ import { useCollectionData } from 'react-firebase-hooks/firestore'
 import { firestore } from '@/firebaseConfig'
 import ChatMessage from './chatMessage'
 import { collection, query, orderBy, limit } from 'firebase/firestore'
+import firebase from 'firebase/compat/app';
 
 interface Message {
   id?: string;
   text: string;
-  createdAt: any;
+  createdAt: firebase.firestore.Timestamp;
 }
 
 
 const ChatRoom = () => {  
 
     const messagesRef = collection(firestore, 'messages');
-    const query = messagesRef.orderBy('createdAt').limit(25);
+    const messageQuery = query(messagesRef, orderBy('createdAt'), limit(25));
 
-    const [messages] = useCollectionData<Message>(query, { idField: 'id' });
+    const [messages] = useCollectionData<Message>(messageQuery, { idField: 'id' });
 
 
   return (

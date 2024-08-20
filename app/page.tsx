@@ -1,7 +1,8 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from "firebase/auth";
-import ChatRoom from "./chat/[roomId]/Room";
+import ChatRoom from "./chat/[roomId]/page";
 import SignIn from "./auth/signin";
 import { socket } from "../socket";
 import { useRouter } from 'next/router';

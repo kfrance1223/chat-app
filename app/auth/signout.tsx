@@ -1,12 +1,11 @@
 import React from 'react'
-import firebase from '@/firebaseConfig';
-import auth from '@/firebaseConfig'
 import { getAuth } from 'firebase/auth'
+import { firestore }  from '@/firebaseConfig'
 
 
 const SignOut = () => {
 
-    const auth = getAuth(firebase.app());
+    const auth = getAuth(firestore.app);
 
     return auth.currentUser && (
         <div>
